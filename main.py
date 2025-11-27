@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 TELEGRAM_TOKEN = "7930783668:AAEWug4vGEM0aWiRaZ8XT5Xbr_hwdVqMNuQ"
-CHAT_ID = "8349018045"
+CHAT_ID = "-1003229134855"
 
 @app.route('/alert', methods=['POST'])
 def alert():
@@ -20,4 +20,5 @@ def alert():
     return "ok", 200
 
 if __name__ == "__main__":
+
     app.run(host="0.0.0.0", port=5000)
