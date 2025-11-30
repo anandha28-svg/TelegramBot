@@ -3,14 +3,14 @@ import requests
 import pytz
 from datetime import datetime
 
-app = Flask(name)
+app = Flask(__name__)
 
 TELEGRAM_TOKEN = "7930783668:AAEWug4vGEM0aWiRaZ8XT5Xbr_hwdVqMNuQ"
 CHAT_ID = "-1003229134855"
 
 
 def send_telegram(text):
-    url = f"https://api.telegram.org/bot%7BTELEGRAM_TOKEN%7D/sendMessage"
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
     payload = {
         "chat_id": CHAT_ID,
         "text": text,
@@ -39,17 +39,12 @@ def alert():
 
     # Build Telegram message
     text = (
-        f"⚡
- {event} Signal Triggered!\n\n"
-        f"📌
- Symbol: {symbol}\n"
-        f"⏱ Timeframe: {timeframe}\n"
-        f"💰
- Price: {price}\n"
-        f"📒
- Strategy: {strategy}\n"
-        f"🕒
- Time (IST): {current_time}\n"
+        f"⚡ *{event} Signal Triggered!*\n\n"
+        f"📌 *Symbol:* `{symbol}`\n"
+        f"⏱ *Timeframe:* `{timeframe}`\n"
+        f"💰 *Price:* `{price}`\n"
+        f"📒 *Strategy:* `{strategy}`\n"
+        f"🕒 *Time (IST):* `{current_time}`\n"
         f"———————————————"
     )
 
@@ -62,5 +57,5 @@ def ping():
     return jsonify({"status": "alive"}), 200
 
 
-if name == "main":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
